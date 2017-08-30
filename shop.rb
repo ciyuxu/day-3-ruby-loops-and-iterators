@@ -55,3 +55,17 @@ end
 puts pickingout_product_by_ref_number(choosing_product_by_ref_number)
 
 #defined picking product from ref number
+
+
+def adding_product_to_shopping_cart(product)
+  if product != nil
+  @shopping_cart << product
+  puts "Congratulations! You have sucessfully put #{product[:name]}in your shopping cart!"
+  else
+  puts "You haven't sucessfully chosen anything yet."
+  end
+end
+
+puts adding_product_to_shopping_cart(pickingout_product_by_ref_number(2))
+
+#defined adding product to shopping cart
