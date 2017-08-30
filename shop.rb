@@ -28,8 +28,6 @@ puts "We have: "
   end
 end
 
-print_products
-
 #defined product line print out
 
 def choosing_product_by_ref_number
@@ -37,13 +35,7 @@ def choosing_product_by_ref_number
   gets.to_i
 end
 
-
-
 #defined choosing_product
-
-
-
-
 
 def pickingout_product_by_ref_number(ref_number)
   @products.each do |product|
@@ -52,20 +44,52 @@ def pickingout_product_by_ref_number(ref_number)
     end
   end
 end
-puts pickingout_product_by_ref_number(choosing_product_by_ref_number)
 
 #defined picking product from ref number
-
 
 def adding_product_to_shopping_cart(product)
   if product != nil
   @shopping_cart << product
-  puts "Congratulations! You have sucessfully put #{product[:name]}in your shopping cart!"
+  puts "Congratulations! You have sucessfully put #{product[:name]} in your shopping cart!"
   else
   puts "You haven't sucessfully chosen anything yet."
   end
 end
 
-puts adding_product_to_shopping_cart(pickingout_product_by_ref_number(2))
-
 #defined adding product to shopping cart
+
+def print_shopping_cart
+
+  total = 0
+
+  @shopping_cart.each do |product|
+    total += product[:price]
+  end
+
+  puts "Your total : #{total}"
+
+end
+
+#definned total in shopping cart
+
+def ask_if_continue_shopping
+  puts "Do you want to continue shopping?"
+  answer = gets.chomp
+  answer.upcase == 'Y'
+end
+
+#defined if want to shopping moderate
+
+loop do
+  print_products
+  ref_number = choosing_product_by_ref_number
+  product = pickingout_product_by_ref_number(ref_number)
+  adding_product_to_shopping_cart(product)
+  print_shopping_cart
+  continue = ask_if_continue_shopping
+  break unless continue
+end
+
+#defined whole process of shopping
+
+puts "Enjoy your products!"
